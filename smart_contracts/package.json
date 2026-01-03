@@ -2,18 +2,25 @@
   "name": "smart_contracts",
   "version": "1.0.0",
   "description": "",
-  "license": "ISC",
+  "license": "MIT",
   "author": "",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "coverage": "npx hardhat coverage",
+    "deploy local": "npx hardhat run scripts/deploy.js --network localhost",
+    "deploy monad": "npx hardhat run scripts/deploy.js --network monad",
+    "clean": "npx hardhat clean",
+    "gas-report": "npx hardhat test --gas-report"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^6.1.0",
-    "hardhat": "^2.26.2"
+    "hardhat": "^2.26.2",
+    "hardhat-gas-reporter": "^2.3.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^5.4.0"
+    "@openzeppelin/contracts": "^4.9.6"
   }
 }
