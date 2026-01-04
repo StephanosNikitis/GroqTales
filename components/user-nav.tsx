@@ -1,6 +1,6 @@
 'use client';
 
-import { Wallet, User, Settings, LogOut } from 'lucide-react';
+import { Wallet, User, Settings, LogOut, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -65,34 +65,47 @@ export function UserNav() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuContent className="w-64" align="end">
+        <DropdownMenuLabel className="bg-yellow-400 text-black italic border-b-2 border-black">User Options</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <Link href="/profile" legacyBehavior passHref>
-              <span>Profile</span>
+              <div className="flex items-center w-full uppercase">
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+              </div>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <Link href="/my-stories" legacyBehavior passHref>
-              <span>My Stories</span>
+              <div className="flex items-center w-full uppercase">
+                <BookOpen className="mr-2 h-4 w-4" />
+                <span>My Stories</span>
+              </div>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <Link href="/nft-gallery" legacyBehavior passHref>
-              <span>My NFTs</span>
+              <div className="flex items-center w-full uppercase">
+                <Wallet className="mr-2 h-4 w-4" />
+                <span>My NFTs</span>
+              </div>
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={disconnectWallet}>
-          <span>Disconnect Wallet</span>
+        <DropdownMenuItem onClick={disconnectWallet} className="cursor-pointer text-red-600 focus:bg-red-600 focus:text-white">
+          <LogOut className="mr-2 h-4 w-4" />
+          <span className="uppercase">Disconnect Wallet</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuLabel>
-          Wallet: {truncateAddress(account)}
-        </DropdownMenuLabel>
+        <div className="px-4 py-3 bg-muted/20">
+          <p className="text-[10px] font-black uppercase text-muted-foreground italic mb-1">Authenticated Wallet:</p>
+          <p className="text-xs font-black uppercase tracking-widest bg-white border-2 border-black px-2 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            {truncateAddress(account)}
+          </p>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
