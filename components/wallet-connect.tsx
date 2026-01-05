@@ -30,6 +30,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useToast } from '@/components/ui/use-toast';
+import { truncateAddress } from '@/lib/utils';
 
 /**
  * WalletConnect Component
@@ -62,15 +63,6 @@ export default function WalletConnect() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [copyTooltip, setCopyTooltip] = useState('Click to copy');
 
-  /**
-   * Formats wallet address for display
-   * @param address - The wallet address to format
-   * @returns Formatted address string
-   */
-  const formatAddress = useCallback((address: string | null) => {
-    if (!address) return '';
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-  }, []);
 
   /**
    * Copies wallet address to clipboard
@@ -157,7 +149,7 @@ export default function WalletConnect() {
               aria-expanded={showDropdown ? 'true' : 'false'}
             >
               <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-              <span>{ensName || formatAddress(account)}</span>
+              <span>{ensName || truncateAddress(account || '')}</span>
               <ChevronDown className="h-4 w-4" />
             </div>
           </TooltipTrigger>
@@ -188,7 +180,7 @@ export default function WalletConnect() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-black uppercase truncate tracking-tighter">
-                  {ensName || formatAddress(account)}
+                  {ensName || truncateAddress(account || '')}
                 </p>
                 <p className="text-xs font-bold text-primary italic uppercase">{balance} ETH</p>
               </div>

@@ -17,17 +17,12 @@ import {
   DropdownMenuGroup,
 } from '@/components/ui/dropdown-menu';
 import { useToast } from '@/components/ui/use-toast';
+import { truncateAddress } from '@/lib/utils';
 
 export function UserNav() {
   const { account, connectWallet, disconnectWallet } = useWeb3();
   const { toast } = useToast();
 
-  // Truncate wallet address for display
-  const truncateAddress = (address: string) => {
-    return address
-      ? `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
-      : '';
-  };
 
   const handleConnect = async () => {
     try {
@@ -69,19 +64,19 @@ export function UserNav() {
         <DropdownMenuLabel className="bg-yellow-400 text-black italic border-b-2 border-black">User Options</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer" asChild>
+          <DropdownMenuItem asChild className="cursor-pointer">
             <Link href="/profile" className="flex items-center w-full uppercase">
               <User className="mr-2 h-4 w-4" />
               <span>Profile</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer" asChild>
+          <DropdownMenuItem asChild className="cursor-pointer">
             <Link href="/my-stories" className="flex items-center w-full uppercase">
               <BookOpen className="mr-2 h-4 w-4" />
               <span>My Stories</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer" asChild>
+          <DropdownMenuItem asChild className="cursor-pointer">
             <Link href="/nft-gallery" className="flex items-center w-full uppercase">
               <Wallet className="mr-2 h-4 w-4" />
               <span>My NFTs</span>
